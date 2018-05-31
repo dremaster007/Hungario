@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1559898423161540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.851, y: 2.911, z: 0.26953125}
+  m_LocalPosition: {x: -5.851, y: 2.911, z: 0}
   m_LocalScale: {x: 0.81953996, y: 0.81953996, z: 0.81953996}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 3
+  m_Constraints: 7
 --- !u!58 &58164977546191332
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -122,8 +122,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -679825965
-  m_SortingLayer: 3
+  m_SortingLayerID: -1064322499
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d228b65afdd82484795195a25af0f6cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
