@@ -6,16 +6,21 @@ public class PlayerAttack : MonoBehaviour
 {
     public Animator animator;
 
-    public CapsuleCollider2D[] axeHitColliders;
+    public bool isColliding;
+
+    public CapsuleCollider2D axeHitCollider;
 
     private void Start()
     {
-        axeHitColliders = GetComponents<CapsuleCollider2D>();
+        axeHitCollider = GetComponentInChildren<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
     }
 
     public void Update()
     {
+        StartCoroutine(CheckSwing());
+
+        #region Swinging Weapon Animation
         if (Input.GetButton("Fire1"))
         {       
             animator.SetBool("isSwinging", true);
@@ -25,5 +30,26 @@ public class PlayerAttack : MonoBehaviour
         {
             animator.SetBool("isSwinging", false);
         }
+        #endregion
+    }
+
+    public void OnTriggerEnter(Collision2D other)
+    {
+        Debug.Log("Hit the " + other.gameObject.name);
+
+        if (other.gameObject.name == "PlayerTDS")
+        {
+            return;
+        }
+
+        if (other.gameObject.name == "Tree-Large")
+        {
+            Debug.Log("Hit tree");
+        }
+    }
+
+    IEnumerator CheckSwing()
+    {
+        yield return new WaitForSeconds(.4f);
     }
 }

@@ -7,7 +7,7 @@ public class HotbarScrolling : MonoBehaviour
 {
     public Scrollbar sb;
     public float scroll;
-    public float scrollVar;
+    //public float scrollVar;
 
     public void Start()
     {
@@ -21,25 +21,25 @@ public class HotbarScrolling : MonoBehaviour
         #region Scroll Wheel
         if(Input.GetAxisRaw("Mouse ScrollWheel") < 0f) //scrolling right
         {
-            scrollVar = scrollVar + 0.1f;
+            //Debug.Log("Scrolling Right");
+            sb.value = sb.value + 0.1f;
         }
 
         if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f) //scrolling left
         {
-            scrollVar = scrollVar - 0.1f;
+            //Debug.Log("Scrolling Left");
+            sb.value = sb.value - 0.1f;
         }
 
-        if(Input.GetAxisRaw("Mouse ScrollWheel") < 0 && scrollVar > 1f) //scrolling from right to left
+        /*if(Input.GetAxisRaw("Mouse ScrollWheel") < 0 && sb.value > 1f) //scrolling from right to left
         {
             sb.value = 0f;
-            scrollVar = 0f;
         }
 
-        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0 && scrollVar < 0f) //scrolling from left to right
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0 && sb.value < 0f) //scrolling from left to right
         {
             sb.value = 1f;
-            scrollVar = 1f;
-        }     
+        }*/     
         #endregion
 
         #region Scroll Hotkeys
