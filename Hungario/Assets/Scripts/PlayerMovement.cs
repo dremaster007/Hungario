@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public StatManager stats;
 
     public float movementSpeed = 0.07f;
 
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
     {
+        TakeDamage();
         RotateSprite();
     }
 
@@ -51,5 +53,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+    }
+
+    public void TakeDamage()
+    {
+
     }
 }
