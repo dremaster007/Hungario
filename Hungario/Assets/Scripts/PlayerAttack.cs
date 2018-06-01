@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject player;
-    public Animation swing;
-
-    public bool isSwinging;
-
+    public Animator animator;
 
     private void Start()
     {
-        swing = GetComponent<Animation>();
+        animator = GetComponent<Animator>();
     }
 
     public void Update()
     {
-        if (Input.GetButtonDown("Fire 1"))
+        if (Input.GetButton("Fire1"))
         {
-            isSwinging = true;
+            animator.SetBool("isSwinging", true);
         }
 
-        if (!Input.GetButtonDown("Fire 1"))
+        if (!Input.GetButton("Fire1"))
         {
-            isSwinging = false;
+            animator.SetBool("isSwinging", false);
         }
     }
 }
