@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     public float movementSpeed = 0.07f;
 
@@ -10,30 +11,34 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update()
     {
-        rotateSprite();
+        RotateSprite();
     }
 
-	void FixedUpdate () {
+	void FixedUpdate ()
+    {
         #region Movement
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetAxisRaw("Horizontal") < 0) //Left
         {
             velocity = transform.position;
             velocity.x -= movementSpeed;
             transform.position = velocity;
         }
-        if (Input.GetKey(KeyCode.D))
+
+        if (Input.GetAxisRaw("Horizontal") > 0) //Right
         {
             velocity = transform.position;
             velocity.x += movementSpeed;
             transform.position = velocity;
         }
-        if (Input.GetKey(KeyCode.W))
+
+        if (Input.GetAxisRaw("Vertical") > 0) //Up
         {
             velocity = transform.position;
             velocity.y += movementSpeed;
             transform.position = velocity;
         }
-        if (Input.GetKey(KeyCode.S))
+
+        if (Input.GetAxisRaw("Vertical") < 0) //Down
         {
             velocity = transform.position;
             velocity.y -= movementSpeed;
@@ -42,10 +47,9 @@ public class PlayerMovement : MonoBehaviour {
         #endregion
     }
 
-    void rotateSprite()
+    void RotateSprite()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
     }
-
 }
