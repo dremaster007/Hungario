@@ -18,26 +18,26 @@ public class HotbarScrolling : MonoBehaviour
     public void Update()
     {
         #region Scroll Wheel
-        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0f)
         {
             Debug.Log("Scrolling Up.");
-            sb.value++;
+            sb.value = sb.value + 0.1f;
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        if(Input.GetAxisRaw("Mouse ScrollWheel") < 0f)
         {
             Debug.Log("Scrolling Down.");
-            sb.value--;
+            sb.value = sb.value - 0.1f;
         }
 
-        if(sb.value > 10)
+        if(Input.GetAxisRaw("Mouse ScrollWheel") > 0 && sb.value == 1f)
         {
             sb.value = 0;
         }
 
-        if (sb.value < 0)
+        if(Input.GetAxisRaw("Mouse ScrollWheel") < 0 && sb.value == 0f)
         {
-            sb.value = 10;
+            sb.value = 1;
         }     
         #endregion
 

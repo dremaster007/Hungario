@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
     {
-        TakeDamage();
         RotateSprite();
+        TakeDamage();
     }
 
 	void FixedUpdate ()
@@ -57,6 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage()
     {
-
+        //takedamage code
     }
 }
