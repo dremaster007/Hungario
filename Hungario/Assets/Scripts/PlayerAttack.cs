@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public Animator animator;
-
-    public bool isColliding;
-
     public CapsuleCollider2D axeHitCollider;
+    public StatManager statManager;
 
-    private void Start()
+    public int hitDamage;
+
+    public void Start()
     {
         axeHitCollider = GetComponentInChildren<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
@@ -18,38 +18,42 @@ public class PlayerAttack : MonoBehaviour
 
     public void Update()
     {
-        StartCoroutine(CheckSwing());
-
         #region Swinging Weapon Animation
         if (Input.GetButton("Fire1"))
-        {       
+        {
             animator.SetBool("isSwinging", true);
         }
 
         if (!Input.GetButton("Fire1"))
         {
+            hitDamage = 0;
             animator.SetBool("isSwinging", false);
         }
         #endregion
     }
 
-    public void OnTriggerEnter(Collision2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit the " + other.gameObject.name);
+        //Debug.Log("Collided with the " + other.gameObject.name);
 
         if (other.gameObject.name == "PlayerTDS")
         {
+            hitDamage = 10;
             return;
         }
 
-        if (other.gameObject.name == "Tree-Large")
+        if (other.gameObject.name == "Tree-Large" && Input.GetButton("Fire1"))
         {
-            Debug.Log("Hit tree");
+            hitDamage = 1;
+            statManager.TextChange();
+            //StartCoroutine(SwingHit());
         }
     }
 
-    IEnumerator CheckSwing()
+    /*IEnumerator SwingHit()
     {
+        hitDamage = 5;
+        Debug.Log("Hit");
         yield return new WaitForSeconds(.4f);
-    }
+    }*/
 }

@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatManager : MonoBehaviour
 {
+    public PlayerAttack playerAttack;
+
     public int foodUse = 20;
     public int waterUse = 30;
     public int coldUse = 10;
@@ -17,7 +20,15 @@ public class StatManager : MonoBehaviour
     public float water = 100;
     public float cold = 100;
 
+    public int wood;
+    public int rock;
+    public int gold;
+    public int diamond;
 
+    public Text woodText;
+    public Text rockText;
+    public Text goldText;
+    public Text diamondText;
 
     public void Update()
     {
@@ -39,9 +50,17 @@ public class StatManager : MonoBehaviour
         #endregion
     }
 
-    IEnumerator StatCounter()
+    public void ResourceChange()
     {
-
-        yield return new WaitForSeconds(10);
+        //if(playerAttack.OnTriggerEnter2D()
     }
+
+    public void TextChange()
+    {
+        woodText.text = ("Wood:     " + wood);
+        rockText.text = ("Rock:     " + rock);
+        goldText.text = ("Gold:     " + gold);
+        diamondText.text = ("diamond   " + diamond);
+    }
+
 }
