@@ -1793,6 +1793,9 @@ GameObject:
     type: 2}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 873a8d0... SwingAnim
 =======
 >>>>>>> parent of 873a8d0... SwingAnim
   m_PrefabInternal: {fileID: 0}
@@ -1931,7 +1934,11 @@ MonoBehaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769851198}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Enabled: 1
+=======
+  m_Enabled: 0
+>>>>>>> parent of 873a8d0... SwingAnim
 =======
   m_Enabled: 0
 >>>>>>> parent of 873a8d0... SwingAnim
@@ -1941,9 +1948,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sb: {fileID: 804089766}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   m_PrefabInternal: {fileID: 472334790}
 >>>>>>> 873a8d0ea59570fa9f1efc7962026961dbd5ffa1
+=======
+  scroll: 0
+>>>>>>> parent of 873a8d0... SwingAnim
 =======
   scroll: 0
 >>>>>>> parent of 873a8d0... SwingAnim
@@ -2179,6 +2190,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 2007768922}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2112326000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,6 +2235,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 873a8d0... SwingAnim
 =======
 >>>>>>> parent of 873a8d0... SwingAnim
 --- !u!1 &2124671163
@@ -2300,7 +2314,10 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 873a8d0ea59570fa9f1efc7962026961dbd5ffa1
+=======
+>>>>>>> parent of 873a8d0... SwingAnim
 =======
 >>>>>>> parent of 873a8d0... SwingAnim
