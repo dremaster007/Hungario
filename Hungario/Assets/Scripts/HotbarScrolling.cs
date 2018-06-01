@@ -69,7 +69,6 @@ public class HotbarScrolling : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            Debug.Log("Alpha 6");
             sb.value = .51f;
         }
 
