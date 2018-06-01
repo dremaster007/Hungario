@@ -6,25 +6,25 @@ using UnityEngine.UI;
 public class HotbarScrolling : MonoBehaviour
 {
     public Scrollbar sb;
-    //public float scroll;
+    public float scroll;
 
     public void Start()
     {
         sb.GetComponent<Scrollbar>().value = 0;
 
-        //scroll = Input.GetAxis("Mouse ScrollWheel");
+        scroll = Input.GetAxis("Mouse ScrollWheel");
     }
 
     public void Update()
     {
         #region Scroll Wheel
-        /*if(scroll > 0f)
+        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             Debug.Log("Scrolling Up.");
             sb.value++;
         }
 
-        if(scroll < 0f)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             Debug.Log("Scrolling Down.");
             sb.value--;
@@ -38,7 +38,7 @@ public class HotbarScrolling : MonoBehaviour
         if (sb.value < 0)
         {
             sb.value = 10;
-        }*/      
+        }     
         #endregion
 
         #region Scroll Hotkeys
