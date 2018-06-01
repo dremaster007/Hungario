@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 58773230954109098}
   - component: {fileID: 50353342435839384}
   - component: {fileID: 114207475479430090}
-  - component: {fileID: 95713810456650316}
+  - component: {fileID: 95802892640217858}
+  - component: {fileID: 114740577811131038}
   m_Layer: 0
   m_Name: PlayerTDS
   m_TagString: Untagged
@@ -57,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4140611794593726}
   - component: {fileID: 212080512305673248}
+  - component: {fileID: 70081585962139258}
   m_Layer: 0
   m_Name: Wood & Stone Axe Recentered
   m_TagString: Untagged
@@ -117,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 1955554642521498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 1.35, z: -1}
-  m_LocalScale: {x: 0.09999999, y: 0.09999999, z: 0.9999998}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4310325917210988}
   m_RootOrder: 2
@@ -170,7 +172,22 @@ CircleCollider2D:
   m_Offset: {x: -0.006835659, y: 0.15722075}
   serializedVersion: 2
   m_Radius: 1.5410142
---- !u!95 &95713810456650316
+--- !u!70 &70081585962139258
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1603613473880542}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.23944183, y: 2.1590388}
+  m_Size: {x: 2.1553707, y: 1.49226}
+  m_Direction: 1
+--- !u!95 &95802892640217858
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -179,7 +196,7 @@ Animator:
   m_GameObject: {fileID: 1005225710205760}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fdc1771053b509444b77ed4698248357, type: 2}
+  m_Controller: {fileID: 9100000, guid: db43d382c8c8c2c49a23b6d7ac1687d6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -194,13 +211,27 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1005225710205760}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4032187fde341284685c81a4d2f44bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sb: {fileID: 0}
   scroll: 0
+--- !u!114 &114740577811131038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005225710205760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2eed4e4f9a6ebb47bebd6565b390f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  isColliding: 0
+  axeHitCollider: {fileID: 0}
 --- !u!114 &114870015915135986
 MonoBehaviour:
   m_ObjectHideFlags: 1
