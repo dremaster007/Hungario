@@ -22,6 +22,7 @@ public class EntityHealth : MonoBehaviour {
             if (canGiveWeapon)
             {
                 PlayerAttack.hasGun = true;
+                PlayerAttack.updateAmmo = true;
             }
         }
 	}

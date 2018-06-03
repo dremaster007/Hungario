@@ -12,11 +12,15 @@ public class PlayerAttack : MonoBehaviour {
     [SerializeField]
     Image GunPic;
     [SerializeField]
+    Text Ammo;
+    [SerializeField]
     GameObject Gun;
     [SerializeField]
     GameObject Bullet;
     Vector2 BulletPos;
     bool toggle = true;
+    float ammo = 0;
+    public static bool updateAmmo = false;
     public static bool isShooting = false;
     public static bool hasGun = false;
 
@@ -24,6 +28,7 @@ public class PlayerAttack : MonoBehaviour {
     void Start () {
         animator = GetComponent<Animator>();
         Bullet.SetActive(false);
+        Ammo.enabled = false;
     }
 	
 	// Update is called once per frame
@@ -31,6 +36,12 @@ public class PlayerAttack : MonoBehaviour {
         if (hasGun)
         {
             GunPic.GetComponent<Image>().enabled = true;
+            if (updateAmmo)
+            {
+                ammo += 30;
+                Ammo.text = "Ammo: " + ammo;
+                updateAmmo = false;
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha1) && hasGun)
         {
@@ -38,19 +49,23 @@ public class PlayerAttack : MonoBehaviour {
             {
                 Gun.SetActive(true);
                 animator.SetBool("GunHold", true);
+                Ammo.enabled = true;
                 toggle = false;
             }
             else if (!toggle)
             {
                 Gun.SetActive(false);
                 animator.SetBool("GunHold", false);
+                Ammo.enabled = false;
                 toggle = true;
             }
         }
-        if (Input.GetButtonDown("Fire1") && canAttack)
+        if (Input.GetButton("Fire1") && canAttack)
         {
-            if (animator.GetBool("GunHold"))
+            if (animator.GetBool("GunHold") && ammo > 0)
             {
+                ammo--;
+                Ammo.text = "Ammo: " + ammo;
                 canAttack = false;
                 isShooting = true;
                 Bullet.SetActive(true);
@@ -93,7 +108,7 @@ public class PlayerAttack : MonoBehaviour {
     }
     IEnumerator ShootDelay()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
         canAttack = true;
         isShooting = false;
     }

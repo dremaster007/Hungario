@@ -7,7 +7,7 @@ public class Trigger : MonoBehaviour {
     bool attacking = false;
 
     float attackTime = 0;
-    float attackCd = 0.2f;
+    float attackCd = 0.3f;
 
     public Collider2D attackTrigger;
 
@@ -18,7 +18,7 @@ public class Trigger : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !attacking && !PlayerAttack.isShooting)
+        if (Input.GetKey(KeyCode.Mouse0) && !attacking && !PlayerAttack.isShooting)
         {
             attacking = true;
             attackTime = attackCd;
