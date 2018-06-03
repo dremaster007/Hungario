@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour {
     {
         if (collision.gameObject.name == "Tree")
         {
-            collision.GetComponent<EntityHealth>().health -= 0.3f;
+            collision.GetComponent<EntityHealth>().health -= 0.2f;
         }
         if (collision.gameObject.name == "Crate")
         {
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour {
         }
         if (collision.gameObject.name == "Rock")
         {
-            collision.GetComponent<EntityHealth>().health -= 0.2f;
+            collision.GetComponent<EntityHealth>().health -= 0.02f;
         }
         if (collision.gameObject.name == "thornBush")
         {
