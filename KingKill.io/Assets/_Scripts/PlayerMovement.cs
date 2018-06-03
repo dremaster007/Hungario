@@ -6,10 +6,32 @@ public class PlayerMovement : MonoBehaviour {
 
     Vector2 velocity;
     public float speed;
+    int randEntry;
+    [SerializeField]
+    GameObject Start1;
+    [SerializeField]
+    GameObject Start2;
+    [SerializeField]
+    GameObject Start3;
+    [SerializeField]
+    GameObject Start4;
 
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    void Start () {
+        randEntry = Random.Range(1, 5);
+        if (randEntry == 1)
+        {
+            transform.position = Start1.transform.position;
+        }else if (randEntry == 2)
+        {
+            transform.position = Start2.transform.position;
+        }else if (randEntry == 3)
+        {
+            transform.position = Start3.transform.position;
+        }else if (randEntry == 4)
+        {
+            transform.position = Start4.transform.position;
+        }
 	}
 	
 	// Update is called once per frame

@@ -6,7 +6,6 @@ public class Bullet : MonoBehaviour {
 
     [SerializeField]
     GameObject self;
-    bool canDestroy = false;
 
     private void Start()
     {

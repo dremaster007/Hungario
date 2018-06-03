@@ -10,62 +10,189 @@ public class PlayerAttack : MonoBehaviour {
     bool canAttack = true;
     float delayTime;
     [SerializeField]
+    Scrollbar reload;
+    [SerializeField]
+    GameObject reloadObject;
+    [SerializeField]
     Image GunPic;
     [SerializeField]
-    Text Ammo;
+    Image PistPic;
+    [SerializeField]
+    Text GunAmmo;
     [SerializeField]
     GameObject Gun;
     [SerializeField]
+    GameObject Pistol;
+    [SerializeField]
     GameObject Bullet;
     Vector2 BulletPos;
+    float shootDelay;
     bool toggle = true;
-    float ammo = 0;
-    public static bool updateAmmo = false;
+    bool pistToggle = true;
+    float gunAmmo = 0;
+    float pistAmmo = 0;
+    int clip = 0;
+    int pistClip = 0;
+    int clipCount = 0;
+    int pistolClipCount = 0;
+    bool reloading = false;
+    public static bool updateGunAmmo = false;
+    public static bool updatePistolAmmo = false;
     public static bool isShooting = false;
     public static bool hasGun = false;
+    public static bool hasPistol = false;
 
     // Use this for initialization
     void Start () {
+        reloadObject.SetActive(false);
         animator = GetComponent<Animator>();
         Bullet.SetActive(false);
-        Ammo.enabled = false;
+        GunAmmo.enabled = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        Reload();
+        GetGun();
+        GetPistol();
+        GunSwap();
+        PistolSwap();
+        Attack();
+    }
+    void Reload()
+    {
+        if (reloading)
+        {
+            if (reload.size < 1)
+            {
+                reload.size += 0.34f * Time.deltaTime;
+            }
+            else if (reload.size >= 1)
+            {
+                if (animator.GetBool("GunHold") == true && gunAmmo > 0)
+                {
+                    clipCount = 30 - clip;
+                    gunAmmo -= clipCount;
+                    clip = 30;
+                    GunAmmo.text = clip + ":" + gunAmmo;
+                    reload.size = 0;
+                    reloading = false;
+                    reloadObject.SetActive(false);
+                }
+                if (animator.GetBool("PistolHold") == true && pistAmmo > 0)
+                {
+                    pistolClipCount = 15 - pistClip;
+                    pistAmmo -= pistolClipCount;
+                    pistClip = 15;
+                    GunAmmo.text = pistClip + ":" + pistAmmo;
+                    reload.size = 0;
+                    reloading = false;
+                    reloadObject.SetActive(false);
+                }
+                reload.size = 0;
+                reloading = false;
+                reloadObject.SetActive(false);
+            }
+        }
+    }
+    void GetGun()
+    {
         if (hasGun)
         {
             GunPic.GetComponent<Image>().enabled = true;
-            if (updateAmmo)
+            if (updateGunAmmo)
             {
-                ammo += 30;
-                Ammo.text = "Ammo: " + ammo;
-                updateAmmo = false;
+                gunAmmo += 30;
+                GunAmmo.text = clip + ":" + gunAmmo;
+                updateGunAmmo = false;
+            }
+            if (Input.GetKeyDown(KeyCode.R) && clip < 30 && !reloading && animator.GetBool("GunHold") == true)
+            {
+                reload.size = 0;
+                reloadObject.SetActive(true);
+                reloading = true;
             }
         }
+    }
+
+    void GetPistol()
+    {
+        if (hasPistol)
+        {
+            PistPic.GetComponent<Image>().enabled = true;
+            if (updatePistolAmmo)
+            {
+                pistAmmo += 15;
+                GunAmmo.text = pistClip + ":" + pistAmmo;
+                updatePistolAmmo = false;
+            }
+            if (Input.GetKeyDown(KeyCode.R) && pistClip < 30 && !reloading && animator.GetBool("PistolHold") == true)
+            {
+                reload.size = 0;
+                reloadObject.SetActive(true);
+                reloading = true;
+            }
+        }
+    }
+
+    void GunSwap()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha1) && hasGun)
         {
+            GunAmmo.text = clip + ":" + gunAmmo;
             if (toggle)
             {
+                pistToggle = true;
                 Gun.SetActive(true);
+                animator.SetBool("PistolHold", false);
+                Pistol.SetActive(false);
                 animator.SetBool("GunHold", true);
-                Ammo.enabled = true;
+                GunAmmo.enabled = true;
                 toggle = false;
             }
             else if (!toggle)
             {
                 Gun.SetActive(false);
                 animator.SetBool("GunHold", false);
-                Ammo.enabled = false;
+                GunAmmo.enabled = false;
                 toggle = true;
             }
         }
-        if (Input.GetButton("Fire1") && canAttack)
+    }
+
+    void PistolSwap()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha2) && hasPistol)
         {
-            if (animator.GetBool("GunHold") && ammo > 0)
+            GunAmmo.text = pistClip + ":" + pistAmmo;
+            if (pistToggle)
             {
-                ammo--;
-                Ammo.text = "Ammo: " + ammo;
+                toggle = true;
+                Pistol.SetActive(true);
+                animator.SetBool("GunHold", false);
+                Gun.SetActive(false);
+                animator.SetBool("PistolHold", true);
+                GunAmmo.enabled = true;
+                pistToggle = false;
+            }
+            else if (!pistToggle)
+            {
+                Pistol.SetActive(false);
+                animator.SetBool("PistolHold", false);
+                GunAmmo.enabled = false;
+                pistToggle = true;
+            }
+        }
+    }
+
+    void Attack()
+    {
+        if (Input.GetButton("Fire1") && canAttack && !reloading)
+        {
+            if (animator.GetBool("GunHold") == true && clip > 0)
+            {
+                clip--;
+                GunAmmo.text = clip + ":" + gunAmmo;
                 canAttack = false;
                 isShooting = true;
                 Bullet.SetActive(true);
@@ -73,6 +200,22 @@ public class PlayerAttack : MonoBehaviour {
                 GameObject bulletClone = (Instantiate(Bullet, BulletPos, transform.rotation)) as GameObject;
                 bulletClone.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
                 Bullet.SetActive(false);
+                shootDelay = 0.25f;
+                StartCoroutine(ShootDelay());
+                return;
+            }
+            if (animator.GetBool("PistolHold") == true && pistClip > 0)
+            {
+                pistClip--;
+                GunAmmo.text = pistClip + ":" + pistAmmo;
+                canAttack = false;
+                isShooting = true;
+                Bullet.SetActive(true);
+                BulletPos = Bullet.transform.position;
+                GameObject bulletClone = (Instantiate(Bullet, BulletPos, transform.rotation)) as GameObject;
+                bulletClone.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
+                Bullet.SetActive(false);
+                shootDelay = 0.5f;
                 StartCoroutine(ShootDelay());
                 return;
             }
@@ -108,7 +251,7 @@ public class PlayerAttack : MonoBehaviour {
     }
     IEnumerator ShootDelay()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(shootDelay);
         canAttack = true;
         isShooting = false;
     }
