@@ -20,8 +20,8 @@ public class StatManager : MonoBehaviour
     public float water = 100;
     public float cold = 100;
 
-    public int wood;
-    public int rock;
+    public int wood = 10;
+    public int rock = 5;
     public int gold;
     public int diamond;
 
@@ -48,6 +48,7 @@ public class StatManager : MonoBehaviour
             health = health - 10f / coldDamageTicks;
         }
         #endregion
+        TextChange();
     }
 
     public void ResourceChange()
@@ -60,7 +61,7 @@ public class StatManager : MonoBehaviour
         woodText.text = ("Wood:     " + wood);
         rockText.text = ("Rock:     " + rock);
         goldText.text = ("Gold:     " + gold);
-        diamondText.text = ("diamond   " + diamond);
+        diamondText.text = ("Diamond   " + diamond);
     }
 
 }

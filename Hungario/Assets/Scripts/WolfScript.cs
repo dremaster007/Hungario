@@ -6,7 +6,8 @@ public class WolfScript : MonoBehaviour {
 
     public int attackDamage = 20;
 
-    public float speed = 7f;
+    public float speed = 10f;
+
     GameObject player;
 
     public bool playerInRange;
@@ -15,7 +16,7 @@ public class WolfScript : MonoBehaviour {
     {
         if(playerInRange)
         {
-            StartCoroutine(ChaseThePlayer(player));
+            ChaseThePlayer(player);
         }
     }
 
@@ -36,9 +37,8 @@ public class WolfScript : MonoBehaviour {
         }
     }
 
-    IEnumerator ChaseThePlayer(GameObject theCollision)
+    public void ChaseThePlayer(GameObject theCollision)
     {
-        yield return new WaitForSeconds(1f);
         transform.position = Vector3.MoveTowards(transform.position, theCollision.transform.position, speed * Time.deltaTime);
     }
 }
