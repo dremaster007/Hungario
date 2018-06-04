@@ -10,7 +10,16 @@ public class EnemyAITestPaul : MonoBehaviour {
     bool chase = false;
     float angle;
     public float speed;
-    bool toggle = true;
+    //bool toggle = true;
+
+    public CircleCollider2D cc2D;
+    public PolygonCollider2D pc2D;
+
+    public void Start()
+    {
+        cc2D = GetComponent<CircleCollider2D>();
+        pc2D = GetComponent<PolygonCollider2D>();
+    }
 
     private void Update()
     {
@@ -27,18 +36,32 @@ public class EnemyAITestPaul : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.name == "PlayerTDS")
         {
-            if (toggle)
+            chase = true;
+
+            cc2D.radius = 1f;
+
+            /*if (toggle)
             {
                 chase = true;
-            }
-            else if (!toggle)
+            }*/
+
+            /*else if (!toggle)
             {
                 chase = false;
-            }
+            }*/
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.name == "PlayerTDS")
+        {
+            chase = false;
+            cc2D.radius = .6f;
         }
     }
 }
