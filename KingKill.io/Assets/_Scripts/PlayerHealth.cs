@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     int healthRound;
     bool tickDamage = false;
     bool tickDelay = false;
+    bool canHeal = true;
     float lasthealth = playerHealth;
 
 	// Use this for initialization
@@ -25,7 +26,22 @@ public class PlayerHealth : MonoBehaviour
         if (tickDamage && !tickDelay)
         {
             tickDelay = true;
+            canHeal = false;
+            StartCoroutine(HealDelay());
             StartCoroutine(DamageTick());
+        }
+        if (canHeal && playerHealth < 100 && !tickDamage)
+        {
+            playerHealth += 15;
+            if (playerHealth > 100)
+            {
+                playerHealth = 100;
+            }
+            healthRound = Mathf.RoundToInt(playerHealth);
+            HealthInd.text = (healthRound).ToString();
+            HealthBar.size = (playerHealth / 100);
+            canHeal = false;
+            StartCoroutine(HealDelay());
         }
         if (playerHealth < 0)
         {
@@ -71,5 +87,10 @@ public class PlayerHealth : MonoBehaviour
         playerHealth -= 10;
         yield return new WaitForSeconds(0.8f);
         tickDelay = false;
+    }
+    IEnumerator HealDelay()
+    {
+        yield return new WaitForSeconds(15);
+        canHeal = true;
     }
 }

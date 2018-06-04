@@ -14,6 +14,10 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.name == "Enemy")
+        {
+            collision.GetComponent<EnemyAI>().Enemyhealth -= 0.5f;
+        }
         if (collision.gameObject.name == "Tree")
         {
             collision.GetComponent<EntityHealth>().health -= 0.2f;
