@@ -42,7 +42,7 @@ public class EnemyAITestPaul : MonoBehaviour {
         {
             chase = true;
 
-            cc2D.radius = 1f;
+            cc2D.radius = 4.5f;
 
             /*if (toggle)
             {
@@ -61,7 +61,7 @@ public class EnemyAITestPaul : MonoBehaviour {
         if (col.gameObject.name == "PlayerTDS")
         {
             chase = false;
-            cc2D.radius = .6f;
+            cc2D.radius = 3.5f;
         }
     }
 }
