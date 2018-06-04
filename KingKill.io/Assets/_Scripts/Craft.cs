@@ -9,13 +9,14 @@ public class Craft : MonoBehaviour {
     GameObject CraftMenu;
     [SerializeField]
     Button UpWeapon;
-    int weaponLevel;
+    public static int weaponLevel;
     [SerializeField]
     Button UpPick;
     int pickLevel;
     [SerializeField]
     Button UpAxe;
     int axeLevel;
+    bool toggle = true;
 
 	// Use this for initialization
 	void Start () {
@@ -26,23 +27,44 @@ public class Craft : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (toggle)
+            {
+                CraftMenu.SetActive(true);
+                Cursor.visible = true;
+                toggle = false;
+            }else if (!toggle)
+            {
+                CraftMenu.SetActive(false);
+                Cursor.visible = false;
+                toggle = true;
+            }
+        }
 	}
 
     void upWeapon()
     {
         if (weaponLevel == 0)
         {
-            if (Materials.Iron > 10 && Materials.Wood > 75)
+            if (Materials.Metal >= 10 && Materials.Wood >= 75)
             {
-                weaponLevel++;
+                PlayerAttack.hasPistol = true;
+                PlayerAttack.pistAmmo += 15;
+                Materials.Wood -= 75;
+                Materials.Metal -= 10;
+                weaponLevel = 1;
                 return;
             }
         }
         else if (weaponLevel == 1)
         {
-            if (Materials.Iron > 20 && Materials.Wood > 100)
+            if (Materials.Iron >= 20 && Materials.Wood >= 100)
             {
+                PlayerAttack.hasGun = true;
+                PlayerAttack.gunAmmo += 30;
+                Materials.Iron -= 10;
+                Materials.Wood -= 100;
                 weaponLevel++;
                 return;
             }

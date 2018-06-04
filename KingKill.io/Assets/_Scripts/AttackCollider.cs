@@ -2,35 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackCollider : MonoBehaviour {
+public class AttackCollider : MonoBehaviour
+{
+
+    public Animator animator;
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Crate")
         {
-            col.transform.GetComponent<EntityHealth>().health -= 0.07f;
+            if (animator.GetBool("AxeHold") == true)
+            {
+                col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 3;
+                return;
+            }
+            col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 7;
         }
         if (col.gameObject.name == "Tree")
         {
-            if (PlayerAttack.animator.GetBool("AxeHold") == true)
+            if (animator.GetBool("AxeHold") == true)
             {
-                col.transform.GetComponent<EntityHealth>().health -= 0.05f;
+                col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 3;
                 Materials.Wood += Random.Range(2, 4);
             }
-            else if (PlayerAttack.animator.GetBool("AxeHold") == false)
+            else if (animator.GetBool("AxeHold") == false)
             {
-                col.transform.GetComponent<EntityHealth>().health -= 0.01f;
-                Materials.Wood += Random.Range(1, 3);
+                col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 8;
+                Materials.Wood += Random.Range(2, 4);
             }
         }
         if (col.gameObject.name == "Rock")
         {
-            if (PlayerAttack.animator.GetBool("AxeHold") == true)
+            if (animator.GetBool("AxeHold") == true)
             {
                 return;
             }
-            col.transform.GetComponent<EntityHealth>().health -= 0.05f;
+            if (animator.GetBool("PickHold") == true)
+            {
+                col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 3;
+                Materials.Stone += Random.Range(3, 5);
+                return;
+            }
+            col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 10;
             Materials.Stone += 1;
+        }
+        if (col.gameObject.name == "thornBush")
+        {
+            if (animator.GetBool("AxeHold") == true)
+            {
+                col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 2;
+            }
         }
     }
 }
