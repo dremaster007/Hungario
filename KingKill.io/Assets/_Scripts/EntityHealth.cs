@@ -7,6 +7,7 @@ public class EntityHealth : MonoBehaviour {
     public float health;
     public bool canGiveWeapon;
     public bool canGiveIron;
+    public bool canRespawn;
     int MaterialType;
     float currentScale;
 
@@ -20,7 +21,24 @@ public class EntityHealth : MonoBehaviour {
         transform.localScale = new Vector3(health, health, transform.localScale.z);
         if (health <= (currentScale / 2))
         {
-            Destroy(gameObject);
+            health = 1;
+            transform.GetComponent<SpriteRenderer>().enabled = false;
+            if (transform.GetComponent<Collider2D>().GetType() == typeof(BoxCollider2D))
+            {
+                transform.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            else if (transform.GetComponent<Collider2D>().GetType() == typeof(PolygonCollider2D))
+            {
+                transform.GetComponent<PolygonCollider2D>().enabled = false;
+            }
+            else if (transform.GetComponent<Collider2D>().GetType() == typeof(CircleCollider2D))
+            {
+                transform.GetComponent<CircleCollider2D>().enabled = false;
+            }
+            if (canRespawn)
+            {
+                StartCoroutine(Respawn());
+            }
             if (canGiveIron)
             {
                 Materials.Iron += 5;
@@ -59,5 +77,23 @@ public class EntityHealth : MonoBehaviour {
                 }
             }
         }
+    }
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(30);
+        transform.GetComponent<SpriteRenderer>().enabled = true;
+        if (transform.GetComponent<Collider2D>().GetType() == typeof(BoxCollider2D))
+        {
+            transform.GetComponent<BoxCollider2D>().enabled = true;
+        }
+        else if (transform.GetComponent<Collider2D>().GetType() == typeof(PolygonCollider2D))
+        {
+            transform.GetComponent<PolygonCollider2D>().enabled = true;
+        }
+        else if (transform.GetComponent<Collider2D>().GetType() == typeof(CircleCollider2D))
+        {
+            transform.GetComponent<CircleCollider2D>().enabled = true;
+        }
+        transform.localScale = new Vector3(1, 1, 1);
     }
 }

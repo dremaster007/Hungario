@@ -175,6 +175,7 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (Craft.weaponLevel == 2)
             {
+                PistPic.enabled = false;
                 GunPic.enabled = true;
                 if (updateGunAmmo)
                 {
@@ -239,6 +240,12 @@ public class PlayerAttack : MonoBehaviour
                 GunAmmo.text = clip + ":" + gunAmmo;
                 if (toggle)
                 {
+                    axeToggle = true;
+                    Axe.SetActive(false);
+                    animator.SetBool("AxeHold", false);
+                    pickToggle = true;
+                    Pick.SetActive(false);
+                    animator.SetBool("PickHold", false);
                     pistToggle = true;
                     Gun.SetActive(true);
                     animator.SetBool("PistolHold", false);

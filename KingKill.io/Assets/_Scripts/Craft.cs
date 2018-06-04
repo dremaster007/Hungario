@@ -65,7 +65,7 @@ public class Craft : MonoBehaviour {
                 PlayerAttack.gunAmmo += 30;
                 Materials.Iron -= 10;
                 Materials.Wood -= 100;
-                weaponLevel++;
+                weaponLevel = 2;
                 return;
             }
         }

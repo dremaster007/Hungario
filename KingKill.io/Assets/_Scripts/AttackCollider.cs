@@ -53,5 +53,20 @@ public class AttackCollider : MonoBehaviour
                 col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 2;
             }
         }
+        if (col.gameObject.name == "Enemy")
+        {
+            if (animator.GetBool("AxeHold") == true)
+            {
+                col.transform.GetComponent<EnemyAI>().Enemyhealth -= 0.4f;
+            }
+            else if (animator.GetBool("PickHold") == true)
+            {
+                col.transform.GetComponent<EnemyAI>().Enemyhealth -= 0.2f;
+            }
+            else if (animator.GetBool("PuchL") == true || animator.GetBool("PuchR") == true)
+            {
+                col.transform.GetComponent<EnemyAI>().Enemyhealth -= 0.2f;
+            }
+        }
     }
 }
