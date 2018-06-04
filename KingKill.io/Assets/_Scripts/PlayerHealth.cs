@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour
+{
 
     [SerializeField]
     Scrollbar HealthBar;
@@ -43,7 +44,16 @@ public class PlayerHealth : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "thornBush")
+        if (collision.gameObject.name == "bullet(Clone)")
+        {
+            playerHealth -= 30;
+            DmgIndicator.damage = true;
+            lasthealth = playerHealth;
+            healthRound = Mathf.RoundToInt(playerHealth);
+            HealthInd.text = (healthRound).ToString();
+            HealthBar.size = (playerHealth / 100);
+        }
+        else if (collision.gameObject.name == "thornBush")
         {
             tickDamage = true;
         }

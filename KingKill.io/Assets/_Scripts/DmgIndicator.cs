@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DmgIndicator : MonoBehaviour {
+public class DmgIndicator : MonoBehaviour
+{
 
     [SerializeField]
     Image Dmg;
@@ -16,6 +17,7 @@ public class DmgIndicator : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
         if (damage)
         {
             Dmg.enabled = true;

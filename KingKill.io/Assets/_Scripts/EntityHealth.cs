@@ -5,35 +5,39 @@ using UnityEngine;
 public class EntityHealth : MonoBehaviour {
 
     public float health;
-    public GameObject Entity;
     public bool canGiveWeapon;
-    int WeaponType;
+    int MaterialType;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void Update()
+    {
         transform.localScale = new Vector3(health, health, transform.localScale.z);
-        if (health <= 0.3f)
+        if (health <= 0.5f)
         {
-            Destroy(Entity);
+            Destroy(gameObject);
             if (canGiveWeapon)
             {
-                WeaponType = Random.Range(1, 3);
-                if (WeaponType == 1)
+                MaterialType = Random.Range(1, 100);
+                if (MaterialType > 0 && MaterialType <= 50)
                 {
-                    PlayerAttack.hasGun = true;
-                    PlayerAttack.updateGunAmmo = true;
+                    Materials.Wood += Random.Range(25, 41);
                 }
-                if (WeaponType == 2)
+                else if (MaterialType > 50 && MaterialType <= 75)
                 {
-                    PlayerAttack.hasPistol = true;
-                    PlayerAttack.updatePistolAmmo = true;
+                    Materials.Stone += Random.Range(25, 41);
+                }
+                else if (MaterialType > 75 && MaterialType <= 85)
+                {
+                    Materials.Metal += Random.Range(25, 41);
+                }
+                else if (MaterialType > 85 && MaterialType <= 95)
+                {
+                    Materials.Iron += Random.Range(25, 41);
+                }
+                else if (MaterialType > 95 && MaterialType <= 100)
+                {
+                    Materials.Titanium += Random.Range(25, 41);
                 }
             }
         }
-	}
+    }
 }
