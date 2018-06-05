@@ -53,7 +53,7 @@ public class AttackCollider : MonoBehaviour
                 col.transform.GetComponent<EntityHealth>().health -= (col.transform.localScale.x / 2) / 2;
             }
         }
-        if (col.gameObject.name == "Enemy")
+        if (col.gameObject.name == "Enemy(Clone)")
         {
             if (animator.GetBool("AxeHold") == true)
             {

@@ -11,8 +11,10 @@ public class Craft : MonoBehaviour {
     Button UpWeapon;
     public static int weaponLevel;
     [SerializeField]
-    Button UpPick;
-    int pickLevel;
+    Button UpAmmo;
+    [SerializeField]
+    Text UpAmmoText;
+    int ammoLevel;
     [SerializeField]
     Button UpAxe;
     int axeLevel;
@@ -21,7 +23,7 @@ public class Craft : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         UpWeapon.onClick.AddListener(upWeapon);
-        UpPick.onClick.AddListener(upPick);
+        UpAmmo.onClick.AddListener(upAmmo);
         UpAxe.onClick.AddListener(upAxe);
     }
 	
@@ -59,32 +61,71 @@ public class Craft : MonoBehaviour {
         }
         else if (weaponLevel == 1)
         {
-            if (Materials.Iron >= 20 && Materials.Wood >= 100)
+            if (Materials.Iron >= 50 && Materials.Wood >= 300)
             {
                 PlayerAttack.hasGun = true;
                 PlayerAttack.gunAmmo += 30;
-                Materials.Iron -= 10;
-                Materials.Wood -= 100;
+                Materials.Iron -= 50;
+                Materials.Wood -= 300;
                 weaponLevel = 2;
                 return;
             }
         }
     }
-    void upPick()
+    void upAmmo()
     {
-        if (pickLevel == 0)
+        if (ammoLevel == 0)
         {
-            if (Materials.Wood > 50 && Materials.Stone > 20)
+            if (Materials.Metal >= (50 * (ammoLevel + 1)) && Materials.Iron >= (50 * (ammoLevel + 1)))
             {
-                pickLevel++;
+                Materials.Metal -= (50 * (ammoLevel + 1));
+                Materials.Iron -= (50 * (ammoLevel + 1));
+                ammoLevel++;
+                UpAmmoText.text = "Upgrade Bullet Lv." + (ammoLevel + 1).ToString();
                 return;
             }
         }
-        else if (pickLevel == 1)
+        else if (ammoLevel == 1)
         {
-            if (Materials.Wood > 75 && Materials.Metal > 20)
+            if (Materials.Metal >= (50 * (ammoLevel + 1)) && Materials.Iron >= (50 * (ammoLevel + 1)))
             {
-                pickLevel++;
+                Materials.Metal -= (50 * (ammoLevel + 1));
+                Materials.Iron -= (50 * (ammoLevel + 1));
+                ammoLevel++;
+                UpAmmoText.text = "Upgrade Bullet Lv." + (ammoLevel + 1).ToString();
+                return;
+            }
+        }
+        else if (ammoLevel == 2)
+        {
+            if (Materials.Metal >= (50 * (ammoLevel + 1)) && Materials.Iron >= (50 * (ammoLevel + 1)))
+            {
+                Materials.Metal -= (50 * (ammoLevel + 1));
+                Materials.Iron -= (50 * (ammoLevel + 1));
+                ammoLevel++;
+                UpAmmoText.text = "Upgrade Bullet Lv." + (ammoLevel + 1).ToString();
+                return;
+            }
+        }
+        else if (ammoLevel == 3)
+        {
+            if (Materials.Metal >= (50 * (ammoLevel + 1)) && Materials.Iron >= (50 * (ammoLevel + 1)))
+            {
+                Materials.Metal -= (50 * (ammoLevel + 1));
+                Materials.Iron -= (50 * (ammoLevel + 1));
+                ammoLevel++;
+                UpAmmoText.text = "Upgrade Bullet Lv." + (ammoLevel + 1).ToString();
+                return;
+            }
+        }
+        else if (ammoLevel == 4)
+        {
+            if (Materials.Metal >= (50 * (ammoLevel + 1)) && Materials.Iron >= (50 * (ammoLevel + 1)))
+            {
+                Materials.Metal -= (50 * (ammoLevel + 1));
+                Materials.Iron -= (50 * (ammoLevel + 1));
+                ammoLevel++;
+                UpAmmoText.text = "Upgrade Bullet Lv." + (ammoLevel + 1).ToString();
                 return;
             }
         }

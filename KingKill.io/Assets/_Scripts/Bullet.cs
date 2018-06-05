@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
     [SerializeField]
     GameObject self;
+    public static float bulletMultiplyer;
 
     private void Start()
     {
@@ -16,23 +17,23 @@ public class Bullet : MonoBehaviour {
     {
         if (collision.gameObject.name == "Enemy")
         {
-            collision.GetComponent<EnemyAI>().Enemyhealth -= 0.5f;
+            collision.GetComponent<EnemyAI>().Enemyhealth -= 0.2f * bulletMultiplyer;
         }
         if (collision.gameObject.name == "Tree")
         {
-            collision.GetComponent<EntityHealth>().health -= 0.2f;
+            collision.GetComponent<EntityHealth>().health -= 0.2f * bulletMultiplyer;
         }
         if (collision.gameObject.name == "Crate")
         {
-            collision.GetComponent<EntityHealth>().health -= 0.4f;
+            collision.GetComponent<EntityHealth>().health -= 0.2f * bulletMultiplyer;
         }
         if (collision.gameObject.name == "Rock")
         {
-            collision.GetComponent<EntityHealth>().health -= 0.02f;
+            collision.GetComponent<EntityHealth>().health -= 0.2f * bulletMultiplyer;
         }
         if (collision.gameObject.name == "thornBush")
         {
-            collision.GetComponent<EntityHealth>().health -= 1f;
+            collision.GetComponent<EntityHealth>().health -= 0.2f * bulletMultiplyer;
         }
         Destroy(self);
     }
