@@ -438,7 +438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1866258573415584, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_Name
-      value: EnemyTestPaul (2)
+      value: EnemyTestPaul
       objectReference: {fileID: 0}
     - target: {fileID: 114523368574560148, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f,
         type: 2}
@@ -765,24 +765,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 50741649066900734, guid: 2d2bdbc10c7ae71448ef020dc1e67be3,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 212701839032332354, guid: 2d2bdbc10c7ae71448ef020dc1e67be3,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212701839032332354, guid: 2d2bdbc10c7ae71448ef020dc1e67be3,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 58164977546191332, guid: 2d2bdbc10c7ae71448ef020dc1e67be3,
-        type: 2}
-      propertyPath: m_IsTrigger
+    - target: {fileID: 1559898423161540, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -861,6 +845,10 @@ Prefab:
     - target: {fileID: 58164977546191332, guid: 2d2bdbc10c7ae71448ef020dc1e67be3,
         type: 2}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559898423161540, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1377,7 +1365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1035905807}
   - component: {fileID: 1035905806}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MiniMap Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,22 +1381,22 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 25
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 257
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: db0dcd8d94d9f4d4eb76b69406eae1ce, type: 2}
   m_TargetDisplay: 0
@@ -1485,6 +1473,10 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559898423161540, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
@@ -1664,7 +1656,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1688,7 +1680,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1143313341
 Prefab:
@@ -1736,7 +1728,7 @@ Prefab:
       objectReference: {fileID: 1350897246}
     - target: {fileID: 1866258573415584, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_Name
-      value: EnemyTestPaul (3)
+      value: EnemyTestPaul
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
@@ -1805,6 +1797,10 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559898423161540, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
@@ -2167,7 +2163,7 @@ Transform:
   m_LocalScale: {x: 16, y: 9, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1269084275
 GameObject:
@@ -2312,27 +2308,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4310325917210988, guid: 6a9a148a14b3725449f8ef5c84f37902, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114207475479430090, guid: 6a9a148a14b3725449f8ef5c84f37902,
         type: 2}
       propertyPath: sb
       value: 
       objectReference: {fileID: 741912711}
-    - target: {fileID: 212656484413345626, guid: 6a9a148a14b3725449f8ef5c84f37902,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 2
+    - target: {fileID: 4656687125052616, guid: 6a9a148a14b3725449f8ef5c84f37902, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.2
       objectReference: {fileID: 0}
-    - target: {fileID: 212236268817308494, guid: 6a9a148a14b3725449f8ef5c84f37902,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212975693903031894, guid: 6a9a148a14b3725449f8ef5c84f37902,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 2
+    - target: {fileID: 4656687125052616, guid: 6a9a148a14b3725449f8ef5c84f37902, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a9a148a14b3725449f8ef5c84f37902, type: 2}
@@ -2658,7 +2647,7 @@ Transform:
   - {fileID: 409577913}
   - {fileID: 2073403351}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704557814
 GameObject:
@@ -3276,7 +3265,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2026391223
 Prefab:
@@ -3600,6 +3589,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1559898423161540, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d2bdbc10c7ae71448ef020dc1e67be3, type: 2}
   m_IsPrefabParent: 0
@@ -3721,7 +3714,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1866258573415584, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_Name
-      value: EnemyTestPaul (1)
+      value: EnemyTestPaul
       objectReference: {fileID: 0}
     - target: {fileID: 4954698175289500, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
