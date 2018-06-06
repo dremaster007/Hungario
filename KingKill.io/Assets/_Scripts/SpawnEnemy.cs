@@ -23,6 +23,9 @@ public class SpawnEnemy : MonoBehaviour {
     [SerializeField]
     Text Score;
 
+    [SerializeField]
+    Text EnemyAmount;
+
     public float WaveDelay = 30;
     int randSpawn;
     bool SpawnWave = false;
@@ -38,6 +41,7 @@ public class SpawnEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        EnemyAmount.text = "Enemies: " + EnemyCount;
         if (delayNextWave)
         {
             if (EnemyCount == 0){
