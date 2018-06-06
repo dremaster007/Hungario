@@ -438,7 +438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1866258573415584, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_Name
-      value: EnemyTestPaul (2)
+      value: EnemyTestPaul
       objectReference: {fileID: 0}
     - target: {fileID: 114523368574560148, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f,
         type: 2}
@@ -1393,18 +1393,18 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 25
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1736,7 +1736,7 @@ Prefab:
       objectReference: {fileID: 1350897246}
     - target: {fileID: 1866258573415584, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_Name
-      value: EnemyTestPaul (3)
+      value: EnemyTestPaul
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
@@ -3721,7 +3721,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1866258573415584, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_Name
-      value: EnemyTestPaul (1)
+      value: EnemyTestPaul
       objectReference: {fileID: 0}
     - target: {fileID: 4954698175289500, guid: 63a3902d3133c7a4d8c8cb7b8e0f354f, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
