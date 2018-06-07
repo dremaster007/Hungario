@@ -57,6 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage()
     {
-        //takedamage code
+        // take damage code
     }
 }

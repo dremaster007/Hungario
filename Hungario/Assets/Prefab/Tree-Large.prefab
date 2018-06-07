@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50741649066900734}
   - component: {fileID: 58164977546191332}
   - component: {fileID: 114979658070518154}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tree-Large
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1559898423161540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.851, y: 2.911, z: 0}
+  m_LocalPosition: {x: -6.85, y: 2.27, z: 2.1}
   m_LocalScale: {x: 0.81953996, y: 0.81953996, z: 0.81953996}
   m_Children: []
   m_Father: {fileID: 0}

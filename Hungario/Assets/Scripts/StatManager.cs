@@ -25,6 +25,10 @@ public class StatManager : MonoBehaviour
     public int gold;
     public int diamond;
 
+    public Text healthText;
+    public Text foodText;
+    public Text waterText;
+    public Text coldText;
     public Text woodText;
     public Text rockText;
     public Text goldText;
@@ -35,20 +39,26 @@ public class StatManager : MonoBehaviour
         #region Natural Damage
         if(food <= 0)
         {
-            health = health - 10f / foodDamageTicks;
+            TakeDamage(10f, foodDamageTicks);
         }
 
         if (water <= 0)
         {
-            health = health - 10f / waterDamageTicks;
+            TakeDamage(10f, waterDamageTicks);
         }
 
         if (cold <= 0)
         {
+            TakeDamage(10f, coldDamageTicks);
             health = health - 10f / coldDamageTicks;
         }
         #endregion
         TextChange();
+    }
+    
+    public void TakeDamage(float damageTaken, float tickDamage)
+    {
+        health = health - damageTaken / tickDamage;
     }
 
     public void ResourceChange()
@@ -58,6 +68,7 @@ public class StatManager : MonoBehaviour
 
     public void TextChange()
     {
+        foodText.text = ("Food:     " + food);
         woodText.text = ("Wood:     " + wood);
         rockText.text = ("Rock:     " + rock);
         goldText.text = ("Gold:     " + gold);
