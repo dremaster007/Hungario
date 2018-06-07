@@ -9,8 +9,11 @@ public class SheepScript : MonoBehaviour {
 
     bool scared = false;    // to determine if AI is scared
 
+    float randomWait;
+
     void Awake()
     {
+        randomWait = Random.Range(1.0f, 10.0f);
         StartCoroutine(StartWalkingRandomly()); // start the random walking
     }
 
