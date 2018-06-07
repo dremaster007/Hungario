@@ -7,10 +7,16 @@ public class SheepScript : MonoBehaviour {
     float randomSpawningNumber;
     float playerYValue;
 
+    //public GameObject wolfSprite;
+
+    [SerializeField]
+    float randomWait;
+
     public float speed = 5.0f;
 
     void Awake()
     {
+        randomWait = Random.Range(1.0f, 10.0f);
         StartCoroutine(StartWalkingRandomly());
     }
 
@@ -21,9 +27,11 @@ public class SheepScript : MonoBehaviour {
     
     IEnumerator StartWalkingRandomly()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(randomWait);
         Vector3 randomDirection = new Vector3(transform.rotation.x, transform.rotation.y, Random.Range(1f,360f));
         transform.Rotate(randomDirection);
+
+        //wolfSprite.transform.rotation.z = randomDirection.z;
         StartCoroutine(StartWalkingRandomly());
     }
 }
