@@ -7,14 +7,6 @@ public class StatManager : MonoBehaviour
 {
     public PlayerAttack playerAttack;
 
-    public int foodUse = 20;
-    public int waterUse = 30;
-    public int coldUse = 10;
-
-    public float foodDamageTicks = 100f;
-    public float waterDamageTicks = 50f;
-    public float coldDamageTicks = 75f;
-
     public float health = 100;
     public float food = 100;
     public float water = 100;
@@ -36,29 +28,7 @@ public class StatManager : MonoBehaviour
 
     public void Update()
     {
-        #region Natural Damage
-        if(food <= 0)
-        {
-            TakeDamage(10f, foodDamageTicks);
-        }
-
-        if (water <= 0)
-        {
-            TakeDamage(10f, waterDamageTicks);
-        }
-
-        if (cold <= 0)
-        {
-            TakeDamage(10f, coldDamageTicks);
-            health = health - 10f / coldDamageTicks;
-        }
-        #endregion
         TextChange();
-    }
-    
-    public void TakeDamage(float damageTaken, float tickDamage)
-    {
-        health = health - damageTaken / tickDamage;
     }
 
     public void ResourceChange()

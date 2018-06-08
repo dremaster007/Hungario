@@ -1975,7 +1975,7 @@ GameObject:
   - component: {fileID: 1158014534}
   m_Layer: 0
   m_Name: StatManager
-  m_TagString: Untagged
+  m_TagString: Stat Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1992,12 +1992,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttack: {fileID: 0}
-  foodUse: 20
-  waterUse: 30
-  coldUse: 10
-  foodDamageTicks: 100
-  waterDamageTicks: 50
-  coldDamageTicks: 75
   health: 100
   food: 100
   water: 100
@@ -2006,6 +2000,10 @@ MonoBehaviour:
   rock: 0
   gold: 0
   diamond: 0
+  healthText: {fileID: 252501202}
+  foodText: {fileID: 1153806786}
+  waterText: {fileID: 1996158323}
+  coldText: {fileID: 59646196}
   woodText: {fileID: 1015198471}
   rockText: {fileID: 2041834702}
   goldText: {fileID: 1591753724}
@@ -2271,6 +2269,18 @@ GameObject:
   m_PrefabParentObject: {fileID: 1005225710205760, guid: 6a9a148a14b3725449f8ef5c84f37902,
     type: 2}
   m_PrefabInternal: {fileID: 1511312038}
+--- !u!114 &1350897256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1350897246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eba8f67f6aece34d84aee1262344bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statManager: {fileID: 1158014533}
 --- !u!1001 &1511312038
 Prefab:
   m_ObjectHideFlags: 0
