@@ -7,10 +7,13 @@ public class PlayerAttack : MonoBehaviour
 {
     public Animator animator;
     int randPunch;
-    bool canAttack = true;
+    public static bool canAttack = true;
     float delayTime;
     [SerializeField]
     Scrollbar reload;
+
+    [SerializeField]
+    Text Reloading;
 
     [SerializeField]
     GameObject reloadObject;
@@ -20,6 +23,9 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField]
     Image PistPic;
+
+    [SerializeField]
+    Image SGPic;
 
     [SerializeField]
     GameObject AxePic;
@@ -37,6 +43,9 @@ public class PlayerAttack : MonoBehaviour
     GameObject Pistol;
 
     [SerializeField]
+    GameObject SG;
+
+    [SerializeField]
     GameObject Axe;
 
     [SerializeField]
@@ -49,26 +58,32 @@ public class PlayerAttack : MonoBehaviour
     float shootDelay;
     bool toggle = true;
     bool pistToggle = true;
+    bool SGToggle = true;
     bool axeToggle = true;
     bool pickToggle = true;
     public static float gunAmmo = 0;
     public static float pistAmmo = 0;
     public static int clip = 0;
     public static int pistClip = 0;
+    public static int SGClip = 0;
     int clipCount = 0;
     int pistolClipCount = 0;
+    int SGClipCount = 0;
     bool reloading = false;
     public static bool updateGunAmmo = false;
     public static bool updatePistolAmmo = false;
+    public static bool updateSGAmmo = false;
     public static bool isShooting = false;
     public static bool hasGun = false;
     public static bool hasPistol = false;
+    public static bool hasSG = false;
     public static bool hasAxe = false;
     public static bool hasPick = false;
 
     // Use this for initialization
     void Start () {
         reloadObject.SetActive(false);
+        Reloading.enabled = false;
         animator = GetComponent<Animator>();
         Bullet.SetActive(false);
         GunAmmo.enabled = false;
@@ -96,6 +111,10 @@ public class PlayerAttack : MonoBehaviour
         {
             GunAmmo.text = clip + ":" + gunAmmo;
         }
+        else if (Craft.weaponLevel == 3)
+        {
+            GunAmmo.text = SGClip + ":" + gunAmmo;
+        }
     }
 
     void Reload()
@@ -104,10 +123,12 @@ public class PlayerAttack : MonoBehaviour
         {
             if (reload.size < 1)
             {
+                Reloading.enabled = true;
                 reload.size += 0.34f * Time.deltaTime;
             }
             else if (reload.size >= 1)
             {
+                Reloading.enabled = false;
                 if (animator.GetBool("GunHold") == true && gunAmmo > 0)
                 {
                     clipCount = 30 - clip;
@@ -144,6 +165,24 @@ public class PlayerAttack : MonoBehaviour
                     reloading = false;
                     reloadObject.SetActive(false);
                 }
+                if (animator.GetBool("SGHold") == true && gunAmmo > 0)
+                {
+                    SGClipCount = 7 - clip;
+                    if (gunAmmo < SGClipCount)
+                    {
+                        SGClip = Mathf.RoundToInt(gunAmmo);
+                        gunAmmo = 0;
+                    }
+                    else
+                    {
+                        gunAmmo -= SGClipCount;
+                    }
+                    SGClip = 7;
+                    GunAmmo.text = SGClip + ":" + gunAmmo;
+                    reload.size = 0;
+                    reloading = false;
+                    reloadObject.SetActive(false);
+                }
                 reload.size = 0;
                 reloading = false;
                 reloadObject.SetActive(false);
@@ -152,25 +191,40 @@ public class PlayerAttack : MonoBehaviour
     }
     void GetGun()
     {
-        if (hasGun || hasPistol)
+        if (!hasGun && !hasPistol && !hasSG)
+        {
+            Gun.SetActive(false);
+            GunPic.enabled = false;
+            animator.SetBool("GunHold", false);
+            GunAmmo.enabled = false;
+            toggle = true;
+            Pistol.SetActive(false);
+            PistPic.enabled = false;
+            animator.SetBool("PistolHold", false);
+            GunAmmo.enabled = false;
+            pistToggle = true;
+            SG.SetActive(false);
+            SGPic.enabled = false;
+            animator.SetBool("SGHold", false);
+            GunAmmo.enabled = false;
+            SGToggle = true;
+        }
+        if (hasGun || hasPistol || hasSG)
         {
             if (Craft.weaponLevel == 1)
             {
-                if (hasPistol)
+                PistPic.enabled = true;
+                if (updatePistolAmmo)
                 {
-                    PistPic.enabled = true;
-                    if (updatePistolAmmo)
-                    {
-                        pistAmmo += 15;
-                        GunAmmo.text = pistClip + ":" + pistAmmo;
-                        updatePistolAmmo = false;
-                    }
-                    if (Input.GetKeyDown(KeyCode.R) && pistClip < 30 && !reloading && animator.GetBool("PistolHold") == true)
-                    {
-                        reload.size = 0;
-                        reloadObject.SetActive(true);
-                        reloading = true;
-                    }
+                    pistAmmo += 15;
+                    GunAmmo.text = pistClip + ":" + pistAmmo;
+                    updatePistolAmmo = false;
+                }
+                if ((Input.GetKeyDown(KeyCode.R) && pistClip < 15 && pistAmmo > 0 && !reloading && animator.GetBool("PistolHold") == true))
+                {
+                    reload.size = 0;
+                    reloadObject.SetActive(true);
+                    reloading = true;
                 }
             }
             else if (Craft.weaponLevel == 2)
@@ -183,7 +237,24 @@ public class PlayerAttack : MonoBehaviour
                     GunAmmo.text = clip + ":" + gunAmmo;
                     updateGunAmmo = false;
                 }
-                if (Input.GetKeyDown(KeyCode.R) && clip < 30 && !reloading && animator.GetBool("GunHold") == true)
+                if ((Input.GetKeyDown(KeyCode.R) && clip < 30 && gunAmmo > 0 && !reloading && animator.GetBool("GunHold") == true))
+                {
+                    reload.size = 0;
+                    reloadObject.SetActive(true);
+                    reloading = true;
+                }
+            }
+            else if (Craft.weaponLevel == 3)
+            {
+                GunPic.enabled = false;
+                SGPic.enabled = true;
+                if (updateSGAmmo)
+                {
+                    gunAmmo += 15;
+                    GunAmmo.text = SGClip + ":" + gunAmmo;
+                    updateSGAmmo = false;
+                }
+                if ((Input.GetKeyDown(KeyCode.R) && SGClip < 7 && gunAmmo > 0 && !reloading && animator.GetBool("SGHold") == true))
                 {
                     reload.size = 0;
                     reloadObject.SetActive(true);
@@ -207,7 +278,7 @@ public class PlayerAttack : MonoBehaviour
 
     void GunSwap()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && (hasGun || hasPistol))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (hasGun || hasPistol || hasSG))
         {
             if (Craft.weaponLevel == 1)
             {
@@ -235,7 +306,8 @@ public class PlayerAttack : MonoBehaviour
                     GunAmmo.enabled = false;
                     pistToggle = true;
                 }
-            }else if (Craft.weaponLevel == 2)
+            }
+            else if (Craft.weaponLevel == 2)
             {
                 GunAmmo.text = clip + ":" + gunAmmo;
                 if (toggle)
@@ -263,6 +335,34 @@ public class PlayerAttack : MonoBehaviour
                     toggle = true;
                 }
             }
+            else if (Craft.weaponLevel == 3)
+            {
+                GunAmmo.text = SGClip + ":" + gunAmmo;
+                if (SGToggle)
+                {
+                    axeToggle = true;
+                    Axe.SetActive(false);
+                    animator.SetBool("AxeHold", false);
+                    pickToggle = true;
+                    Pick.SetActive(false);
+                    animator.SetBool("PickHold", false);
+                    pistToggle = true;
+                    animator.SetBool("PistolHold", false);
+                    Pistol.SetActive(false);
+                    PistPic.enabled = false;
+                    SG.SetActive(true);
+                    animator.SetBool("SGHold", true);
+                    GunAmmo.enabled = true;
+                    SGToggle = false;
+                }
+                else if (!SGToggle)
+                {
+                    SG.SetActive(false);
+                    animator.SetBool("SGHold", false);
+                    GunAmmo.enabled = false;
+                    SGToggle = true;
+                }
+            }
         }
     }
 
@@ -270,6 +370,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha2) && hasPick)
         {
+            reload.size = 0;
+            reloadObject.SetActive(false);
+            reloading = false;
             if (pickToggle)
             {
                 pistToggle = true;
@@ -281,6 +384,9 @@ public class PlayerAttack : MonoBehaviour
                 axeToggle = true;
                 Axe.SetActive(false);
                 animator.SetBool("AxeHold", false);
+                SGToggle = true;
+                SG.SetActive(false);
+                animator.SetBool("SGHold", false);
                 Pick.SetActive(true);
                 animator.SetBool("PickHold", true);
                 pickToggle = false;
@@ -294,6 +400,9 @@ public class PlayerAttack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && hasAxe)
         {
+            reload.size = 0;
+            reloadObject.SetActive(false);
+            reloading = false;
             if (axeToggle)
             {
                 pistToggle = true;
@@ -302,6 +411,9 @@ public class PlayerAttack : MonoBehaviour
                 toggle = true;
                 Gun.SetActive(false);
                 animator.SetBool("GunHold", false);
+                SGToggle = true;
+                SG.SetActive(false);
+                animator.SetBool("SGHold", false);
                 pickToggle = true;
                 Pick.SetActive(false);
                 animator.SetBool("PickHold", false);
@@ -321,8 +433,15 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && canAttack && !reloading)
         {
-            if (animator.GetBool("GunHold") == true && clip > 0)
+            if (animator.GetBool("GunHold") == true)
             {
+                if (clip <= 0)
+                {
+                    reload.size = 0;
+                    reloadObject.SetActive(true);
+                    reloading = true;
+                    return;
+                }
                 clip--;
                 GunAmmo.text = clip + ":" + gunAmmo;
                 canAttack = false;
@@ -332,12 +451,19 @@ public class PlayerAttack : MonoBehaviour
                 GameObject bulletClone = (Instantiate(Bullet, BulletPos, transform.rotation)) as GameObject;
                 bulletClone.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
                 Bullet.SetActive(false);
-                shootDelay = 0.25f;
+                shootDelay = 0.15f;
                 StartCoroutine(ShootDelay());
                 return;
             }
-            if (animator.GetBool("PistolHold") == true && pistClip > 0)
+            if (animator.GetBool("PistolHold") == true)
             {
+                if (pistClip <= 0)
+                {
+                    reload.size = 0;
+                    reloadObject.SetActive(true);
+                    reloading = true;
+                    return;
+                }
                 pistClip--;
                 GunAmmo.text = pistClip + ":" + pistAmmo;
                 canAttack = false;
@@ -348,6 +474,28 @@ public class PlayerAttack : MonoBehaviour
                 bulletClone.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
                 Bullet.SetActive(false);
                 shootDelay = 0.5f;
+                StartCoroutine(ShootDelay());
+                return;
+            }
+            if (animator.GetBool("SGHold") == true)
+            {
+                if (SGClip <= 0)
+                {
+                    reload.size = 0;
+                    reloadObject.SetActive(true);
+                    reloading = true;
+                    return;
+                }
+                SGClip--;
+                GunAmmo.text = SGClip + ":" + gunAmmo;
+                canAttack = false;
+                isShooting = true;
+                Bullet.SetActive(true);
+                BulletPos = Bullet.transform.position;
+                GameObject bulletClone = (Instantiate(Bullet, BulletPos, transform.rotation)) as GameObject;
+                bulletClone.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
+                Bullet.SetActive(false);
+                shootDelay = 0.6f;
                 StartCoroutine(ShootDelay());
                 return;
             }

@@ -12,13 +12,19 @@ public class EnemyAI : MonoBehaviour {
     bool tickDelay = false;
     public float speed;
     public float Enemyhealth = 1;
+    public static bool reset = false;
 	
 	// Update is called once per frame
 	void Update () {
-        if (Enemyhealth <= 0)
+        if (Enemyhealth <= 0 || reset)
         {
             SpawnEnemy.EnemyCount--;
             Destroy(gameObject);
+            if (SpawnEnemy.EnemyCount <= 0)
+            {
+                reset = false;
+                SpawnEnemy.delayNextWave = true;
+            }
         }
         Vector2 direction = target.transform.position - transform.position;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

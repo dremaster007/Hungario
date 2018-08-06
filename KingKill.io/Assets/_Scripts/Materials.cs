@@ -33,5 +33,14 @@ public class Materials : MonoBehaviour {
         metal.text = "Metal: " + Metal;
         iron.text = "Iron: " + Iron;
         titanium.text = "Titanium: " + Titanium;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Materials.Wood += 100;
+            Materials.Stone += 100;
+            Materials.Metal += 100;
+            Materials.Iron += 100;
+            PlayerAttack.gunAmmo += 100;
+            PlayerAttack.pistAmmo += 100;
+        }
 	}
 }

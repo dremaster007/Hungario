@@ -21,6 +21,18 @@ public class SpawnEnemy : MonoBehaviour {
     GameObject spawn4;
 
     [SerializeField]
+    GameObject spawn5;
+
+    [SerializeField]
+    GameObject spawn6;
+
+    [SerializeField]
+    GameObject spawn7;
+
+    [SerializeField]
+    GameObject spawn8;
+
+    [SerializeField]
     Text Score;
 
     [SerializeField]
@@ -30,14 +42,15 @@ public class SpawnEnemy : MonoBehaviour {
     int randSpawn;
     bool SpawnWave = false;
     int spawnCount = 0;
-    int spawnLevel = 1;
+    public static int spawnLevel = 1;
     public static int EnemyCount;
-    bool delayNextWave = true;
+    public static bool delayNextWave = true;
 
 	// Use this for initialization
 	void Start () {
         StartCoroutine(WaitForWave());
-	}
+        Score.text = "Wave " + (spawnLevel - 1);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -45,17 +58,16 @@ public class SpawnEnemy : MonoBehaviour {
         if (delayNextWave)
         {
             if (EnemyCount == 0){
-                Debug.Log("Incoming Wave in " + WaveDelay + " seconds..."); 
                 delayNextWave = false;
                 spawnCount = 0;
                 StartCoroutine(WaitForWave());
             }
         }
-		if (SpawnWave && !delayNextWave)
+		else if (SpawnWave && !delayNextWave)
         {
-            if (spawnCount < (4 * spawnLevel))
+            if (spawnCount < (10 * spawnLevel))
             {
-                randSpawn = Random.Range(1, 5);
+                randSpawn = Craft.playerLevel;
                 if (randSpawn == 1)
                 {
                     EnemyPrefab.SetActive(true);
@@ -87,16 +99,54 @@ public class SpawnEnemy : MonoBehaviour {
                     EnemyCount++;
                     EnemyPrefab.SetActive(false);
                 }
+                else if (randSpawn == 5)
+                {
+                    EnemyPrefab.SetActive(true);
+                    GameObject EnemyClone = Instantiate(EnemyPrefab);
+                    EnemyClone.transform.position = spawn5.transform.position;
+                    EnemyCount++;
+                    EnemyPrefab.SetActive(false);
+                }
+                else if (randSpawn == 6)
+                {
+                    EnemyPrefab.SetActive(true);
+                    GameObject EnemyClone = Instantiate(EnemyPrefab);
+                    EnemyClone.transform.position = spawn6.transform.position;
+                    EnemyCount++;
+                    EnemyPrefab.SetActive(false);
+                }
+                else if (randSpawn == 7)
+                {
+                    EnemyPrefab.SetActive(true);
+                    GameObject EnemyClone = Instantiate(EnemyPrefab);
+                    EnemyClone.transform.position = spawn7.transform.position;
+                    EnemyCount++;
+                    EnemyPrefab.SetActive(false);
+                }
+                else if (randSpawn == 8)
+                {
+                    EnemyPrefab.SetActive(true);
+                    GameObject EnemyClone = Instantiate(EnemyPrefab);
+                    EnemyClone.transform.position = spawn8.transform.position;
+                    EnemyCount++;
+                    EnemyPrefab.SetActive(false);
+                }
                 spawnCount += 1;
             }
             else
             {
-                Debug.Log("Delaying Wave...");
                 delayNextWave = true;
                 SpawnWave = false;
                 spawnCount = 0;
-                spawnLevel += 1;
-                Score.text = "Wave " + spawnLevel;
+                if (spawnLevel == 1)
+                {
+                    spawnLevel++;
+                }
+                else
+                {
+                    spawnLevel += 1;
+                }
+                Score.text = "Wave " + (spawnLevel - 1);
             }
         }
 	}

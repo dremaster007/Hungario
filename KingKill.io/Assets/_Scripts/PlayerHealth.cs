@@ -45,8 +45,20 @@ public class PlayerHealth : MonoBehaviour
         }
         if (playerHealth < 0)
         {
+            if (Craft.restartOnDeath)
+            {
+                SpawnEnemy.spawnLevel = 1;
+                Craft.playerLevel = Random.Range(1, 9);
+                PlayerAttack.hasGun = false;
+                PlayerAttack.hasPistol = false;
+                EnemyAI.reset = true;
+            }
+            PlayerMovement.resetPlayerPos = true;
+            Materials.Wood = 0;
+            Materials.Stone = 0;
+            Materials.Metal = 0;
+            Materials.Iron = 0;
             playerHealth = 100;
-            transform.position = new Vector3(0, 0, transform.position.z);
         }
         healthRound = Mathf.RoundToInt(playerHealth);
         HealthInd.text = (healthRound).ToString();

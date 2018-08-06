@@ -9,6 +9,10 @@ public class AttackCollider : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (PlayerAttack.hasGun || PlayerAttack.hasPistol || PlayerAttack.hasSG)
+        {
+            return;
+        }
         if (col.gameObject.name == "Crate")
         {
             if (animator.GetBool("AxeHold") == true)
@@ -63,7 +67,7 @@ public class AttackCollider : MonoBehaviour
             {
                 col.transform.GetComponent<EnemyAI>().Enemyhealth -= 0.2f;
             }
-            else if (animator.GetBool("PuchL") == true || animator.GetBool("PuchR") == true)
+            else if (animator.GetBool("PunchL") == true || animator.GetBool("PunchR") == true)
             {
                 col.transform.GetComponent<EnemyAI>().Enemyhealth -= 0.2f;
             }
