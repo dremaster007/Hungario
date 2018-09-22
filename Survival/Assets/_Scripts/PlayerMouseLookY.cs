@@ -18,6 +18,10 @@ public class PlayerMouseLookY : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerMouseLookX.lockCursor == false)
+        {
+            return;
+        }
         MouseY -= Input.GetAxis("Mouse Y") * sensitivityY;
         MouseY = Mathf.Clamp(MouseY, 0, 80);
         transform.localEulerAngles = new Vector3(MouseY, transform.localEulerAngles.y, 0);

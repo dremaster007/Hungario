@@ -21,18 +21,6 @@ public class SpawnEnemy : MonoBehaviour {
     GameObject spawn4;
 
     [SerializeField]
-    GameObject spawn5;
-
-    [SerializeField]
-    GameObject spawn6;
-
-    [SerializeField]
-    GameObject spawn7;
-
-    [SerializeField]
-    GameObject spawn8;
-
-    [SerializeField]
     Text Score;
 
     [SerializeField]
@@ -42,6 +30,7 @@ public class SpawnEnemy : MonoBehaviour {
     int randSpawn;
     bool SpawnWave = false;
     int spawnCount = 0;
+    public int spawnRate = 5;
     public static int spawnLevel = 1;
     public static int EnemyCount;
     public static bool delayNextWave = true;
@@ -65,9 +54,9 @@ public class SpawnEnemy : MonoBehaviour {
         }
 		else if (SpawnWave && !delayNextWave)
         {
-            if (spawnCount < (10 * spawnLevel))
+            if (spawnCount < (spawnRate * spawnLevel))
             {
-                randSpawn = Craft.playerLevel;
+                randSpawn = Random.Range(1,5);
                 if (randSpawn == 1)
                 {
                     EnemyPrefab.SetActive(true);
@@ -96,38 +85,6 @@ public class SpawnEnemy : MonoBehaviour {
                     EnemyPrefab.SetActive(true);
                     GameObject EnemyClone = Instantiate(EnemyPrefab);
                     EnemyClone.transform.position = spawn4.transform.position;
-                    EnemyCount++;
-                    EnemyPrefab.SetActive(false);
-                }
-                else if (randSpawn == 5)
-                {
-                    EnemyPrefab.SetActive(true);
-                    GameObject EnemyClone = Instantiate(EnemyPrefab);
-                    EnemyClone.transform.position = spawn5.transform.position;
-                    EnemyCount++;
-                    EnemyPrefab.SetActive(false);
-                }
-                else if (randSpawn == 6)
-                {
-                    EnemyPrefab.SetActive(true);
-                    GameObject EnemyClone = Instantiate(EnemyPrefab);
-                    EnemyClone.transform.position = spawn6.transform.position;
-                    EnemyCount++;
-                    EnemyPrefab.SetActive(false);
-                }
-                else if (randSpawn == 7)
-                {
-                    EnemyPrefab.SetActive(true);
-                    GameObject EnemyClone = Instantiate(EnemyPrefab);
-                    EnemyClone.transform.position = spawn7.transform.position;
-                    EnemyCount++;
-                    EnemyPrefab.SetActive(false);
-                }
-                else if (randSpawn == 8)
-                {
-                    EnemyPrefab.SetActive(true);
-                    GameObject EnemyClone = Instantiate(EnemyPrefab);
-                    EnemyClone.transform.position = spawn8.transform.position;
                     EnemyCount++;
                     EnemyPrefab.SetActive(false);
                 }

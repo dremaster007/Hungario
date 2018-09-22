@@ -6,7 +6,7 @@ public class PlayerMouseLookX : MonoBehaviour
 {
 
     float MouseX;
-    bool lockCursor = true;
+    public static bool lockCursor = true;
     public float sensitivityX = 2f;
 
     // Use this for initialization
@@ -35,6 +35,10 @@ public class PlayerMouseLookX : MonoBehaviour
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            return;
         }
         MouseX = Input.GetAxis("Mouse X");
 

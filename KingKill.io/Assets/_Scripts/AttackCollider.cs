@@ -9,7 +9,7 @@ public class AttackCollider : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (PlayerAttack.hasGun || PlayerAttack.hasPistol || PlayerAttack.hasSG)
+        if (!PlayerAttack.canUseTool)
         {
             return;
         }

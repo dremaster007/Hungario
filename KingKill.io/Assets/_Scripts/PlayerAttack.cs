@@ -56,11 +56,12 @@ public class PlayerAttack : MonoBehaviour
 
     Vector2 BulletPos;
     float shootDelay;
-    bool toggle = true;
-    bool pistToggle = true;
-    bool SGToggle = true;
-    bool axeToggle = true;
-    bool pickToggle = true;
+    public static bool canUseTool = true;
+    public static bool toggle = true;
+    public static bool pistToggle = true;
+    public static bool SGToggle = true;
+    public static bool axeToggle = true;
+    public static bool pickToggle = true;
     public static float gunAmmo = 0;
     public static float pistAmmo = 0;
     public static int clip = 0;
@@ -280,6 +281,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && (hasGun || hasPistol || hasSG))
         {
+            canUseTool = false;
             if (Craft.weaponLevel == 1)
             {
                 GunAmmo.text = pistClip + ":" + pistAmmo;
@@ -370,6 +372,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha2) && hasPick)
         {
+            canUseTool = true;
             reload.size = 0;
             reloadObject.SetActive(false);
             reloading = false;
@@ -400,6 +403,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && hasAxe)
         {
+            canUseTool = true;
             reload.size = 0;
             reloadObject.SetActive(false);
             reloading = false;
@@ -495,7 +499,7 @@ public class PlayerAttack : MonoBehaviour
                 GameObject bulletClone = (Instantiate(Bullet, BulletPos, transform.rotation)) as GameObject;
                 bulletClone.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
                 Bullet.SetActive(false);
-                shootDelay = 0.6f;
+                shootDelay = 0.8f;
                 StartCoroutine(ShootDelay());
                 return;
             }
